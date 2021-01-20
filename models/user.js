@@ -20,6 +20,12 @@ module.exports = (sequelize, DataTypes) => {
       let isValid = bcrypt.compareSync(typedPassword, this.password);
       return isValid;
     }
+
+    toJSON() {
+      let userData = this.get();
+      delete userData.password;
+      return userData;
+    }
   };
   user.init({
     email: {

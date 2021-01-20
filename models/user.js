@@ -15,6 +15,11 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
+
+    validPassword(typedPassword) {
+      let isValid = bcrypt.compareSync(typedPassword, this.password);
+      return isValid;
+    }
   };
   user.init({
     email: {

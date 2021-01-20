@@ -33,7 +33,7 @@ router.post('/signup', (req, res) => {
       res.redirect('/auth/signup'); // 👋 We need the full path for a redirect
     }
   }).catch( error => {
-    console.log(`⚠️ Signup Error:`, error)
+    console.log(`🤷‍♂️ Signup Error: `, error)
     res.redirect('/auth/signup'); 
   });
 

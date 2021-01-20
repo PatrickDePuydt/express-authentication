@@ -1,4 +1,7 @@
 'use strict';
+
+const bcrypt = require('bcrypt');
+
 const {
   Model
 } = require('sequelize');
@@ -49,10 +52,10 @@ module.exports = (sequelize, DataTypes) => {
       // Instance Options
       beforeCreate: (pendingUser, options) => {
         // Check if there is a user being passed AND that user has a password
-
-        // Hash the password
-
-        // Store the hash as the user's password
+        if(pendingUser && pendingUser.password){
+          let hash = bcrypt.hashSync(pendingUser.password, 12); // Hash the password
+          pendingUser.password = hash; // Store the hash as the user's password
+        }
       }
     },
     sequelize,

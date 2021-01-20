@@ -25,10 +25,16 @@ router.post('/signup', (req, res) => {
       password: req.body.password      
     }
   }).then(([user, created]) => {
-    //// If user was created
-    ////// Redirect to homepage or profile
-    //// else there was NOT a user created
-    ////// redirect to auth/signup
+    if(created) {
+      console.log(`😎`)
+      res.redirect('/');
+    } else {
+      console.log(`👎 ${user.name} already exists`)
+      res.redirect('/auth/signup'); // 👋 We need the full path for a redirect
+    }
+  }).catch( error => {
+    console.log(`⚠️ Signup Error:`, error)
+    res.redirect('/auth/signup'); 
   });
 
 

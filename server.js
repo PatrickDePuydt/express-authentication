@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 app.use(layouts);
 app.use(session({
-  secret: 'blahblahblahblahblah',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }));

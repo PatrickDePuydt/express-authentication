@@ -45,6 +45,16 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   }, {
+    hooks: {
+      // Instance Options
+      beforeCreate: (pendingUser, options) => {
+        // Check if there is a user being passed AND that user has a password
+
+        // Hash the password
+
+        // Store the hash as the user's password
+      }
+    },
     sequelize,
     modelName: 'user',
   });
